@@ -24,7 +24,7 @@ if ($stmt = $con->prepare("select Name, Password from USERS where Name = ?")) {
         $stmt->bind_result($name, $password);
         $stmt->fetch();
         if (password_verify($_POST['password'], $password)) {
-            header('Location: https://www.google.com/');
+            header('Location: ../homepage/homepage.php');
             exit();
         } else {
             echo 'Falscher Benutzername oder Passwort!';

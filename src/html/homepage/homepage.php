@@ -7,7 +7,7 @@
         <title>Steam</title>
     </head>
     <body>
-        <?php include('header.php') ?>
+        <?php include('../header.php') ?>
 
         <h2>Deine Serien</h2>
         <div>
@@ -43,15 +43,16 @@
         <h1>Series API Demo</h1>
         <h2>Get All Series</h2>
         <?php
+        require('../../script/entities/series.php');
         // Get all series
-        $api_url = 'http://localhost/steam/api/api.php';
-        $response = file_get_contents($api_url);
-        $series = json_decode($response, true);
+        $api_url = '../../script/api/series.php';
+        $series = new Series();
+        $found = $series->getSeries();
 
-        if ($series) {
+        if ($found) {
             echo '<ul>';
-            foreach ($series as $serie) {
-                echo '<li>' . $serie['title'] . ' - Season ' . $serie['season'] . ' - Genre: ' . $serie['genre'] . ' - Platform: ' . $serie['platform'] . '</li>';
+            foreach ($found as $s) {
+                echo '<li>' . $s['Title'] . ' - Season ' . $s['Season'] . ' - Genre: ' . $s['Genre'] . ' - Platform: ' . $s['Platform'] . '</li>';
             }
             echo '</ul>';
         } else {
@@ -80,12 +81,12 @@
         </form>
 
         <h2>Delete a Series</h2>
-        <form method="DELETE" action="<?php echo $api_url; ?>">
+        <form method="POST" action="<?php echo $api_url; ?>">
             <label for="delete_id">Enter Series ID to Delete:</label>
             <input type="text" name="id" id="delete_id">
             <button type="submit">Delete</button>
         </form>
 
-        <?php include('footer.php') ?>
+        <?php include('../footer.php') ?>
     </body>
 </html>

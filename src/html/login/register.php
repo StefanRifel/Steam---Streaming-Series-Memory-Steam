@@ -43,7 +43,7 @@ if ($InsertOK = $con->prepare("insert into USERS (Name, Password) VALUES (?, ?)"
     $InsertOK->execute();
     echo "Registrierung erfolgreich!";
     $InsertOK->close();
-    header('Location: index.html');
+    header('Location: ../homepage/homepage.php');
     exit();
 
 } else {
