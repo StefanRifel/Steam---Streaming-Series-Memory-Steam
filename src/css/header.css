@@ -1,6 +1,5 @@
 /* header.css */
 header {
-    background-color: #141414;
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -47,5 +46,22 @@ header {
 }
 
 .search-button:focus {
+    outline: none;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #89050c;
+}
+
+.logout-button:focus {
     outline: none;
 }

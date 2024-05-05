@@ -1,15 +1,6 @@
 <?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'steam';
-//Mit Datenbank verbinden
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-} else {
-    echo "Connected successfully";
-}
+
+$con = require('../../../resources/config.php');
 
 //Prüfen ob Daten NULL sind
 if (!isset($_POST['username'], $_POST['password1'], $_POST['password2'])) {
@@ -26,28 +17,22 @@ if (empty($_POST['username']) || empty($_POST['password1']) || empty($_POST['pas
 if($_POST['password1'] != $_POST['password2']) {
     exit('Passwörter stimmen nicht überein!');
 }
-//TODO: Prüfen ob Benutzer schon vorhanden ist
-if($stmt = $con->prepare("select Name from USERS where Name = ?")) {
-    $stmt->bind_param("s", $_POST['username']);
-    $stmt->execute();
-    $stmt->store_result();
-    if ($stmt->num_rows > 0) {
-        exit('Username existiert bereits!');
-    }
-}
-//Account anlegen
-if ($InsertOK = $con->prepare("insert into USERS (Name, Password) VALUES (?, ?)")) {
-    $password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
-    $id=1;
-    $InsertOK->bind_param("ss", $_POST['username'], $password);
-    $InsertOK->execute();
-    echo "Registrierung erfolgreich!";
-    $InsertOK->close();
-    header('Location: ../homepage/homepage.php');
-    exit();
+$username = $_POST['username'];
+$password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
 
-} else {
-    echo "Konnte nicht registriert werden!";
+$sql = "insert into USERS (name, password) VALUES ('$username', '$password')";
+$con->query($sql);
+header('Location: ../homepage/homepage.php');
+
+$sql = "select name from USERS where name = '$username'";
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    exit('Username existiert bereits!');
 }
-$InsertOK->close()
-    ?>
+
+//Account anlegen
+$sql = "insert into USERS (name, password) VALUES ('$username', '$password')";
+$con->query($sql);
+
+
+

@@ -7,7 +7,7 @@ CREATE DATABASE IF NOT EXISTS steam;
 CREATE TABLE IF NOT EXISTS USERS (
     ID int NOT NULL AUTO_INCREMENT,
     Name varchar(50) NOT NULL,
-    Password varchar(50) NOT NULL,
+    Password varchar(255) NOT NULL,
     PRIMARY KEY (ID)
 );
 
