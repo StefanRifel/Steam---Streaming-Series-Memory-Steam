@@ -4,34 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/header.css">
+        <link rel="stylesheet" href="../../css/footer.css">
         <title>Steam</title>
     </head>
     <body>
         <?php include('../header.php') ?>
 
-        <h2>Deine Serien</h2>
-        <div>
-            <form action="../../script/api/series.php" method="post">
-                <h3>Füge eine neue Serie hinzu</h3>
-                <label>
-                    Titel:
-                    <input type="text" name="title">
-                </label>
-                <label>
-                    Staffeln:
-                    <input type="text" name="season">
-                </label>
-                <label>
-                    Genre:
-                    <input type="text" name="genre">
-                </label>
-                <label>
-                    Streaming-Plattform:
-                    <input type="text" name="streaming-plattform">
-                </label>
-                <input type="submit" value="Insert">
-            </form>
-        </div>
+        <h2>Create a New Series</h2>
+        <form method="POST" action="">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title"><br>
+            <label for="season">Season:</label>
+            <input type="number" name="season" id="season"><br>
+            <label for="genre">Genre:</label>
+            <input type="text" name="genre" id="genre"><br>
+            <label for="platform">Platform:</label>
+            <input type="text" name="platform" id="platform"><br>
+            <button type="submit">Create</button>
+        </form>
 
         <div>
             <label>Titel:</label>

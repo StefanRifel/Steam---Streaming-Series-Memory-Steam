@@ -1,3 +1,5 @@
 <footer>
-    <h2>Page footer</h2>
+    <div class="footer-content">
+        <p>&copy; 2024 Your Company</p>
+    </div>
 </footer>
