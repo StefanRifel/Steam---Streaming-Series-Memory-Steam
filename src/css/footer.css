@@ -1,12 +1,11 @@
 /* footer.css */
 footer {
-    background-color: #000;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #141414;
     color: #fff;
-    padding: 20px;
     text-align: center;
-}
-
-footer p {
-    font-size: 14px;
-    margin: 0;
+    padding: 20px 0;
 }

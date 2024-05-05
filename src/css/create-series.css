@@ -1,0 +1,45 @@
+/* style.css */
+.toggle {
+    text-align: center;
+}
+
+.create-series-container {
+    position: relative;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff0c19;
+}
+
+.create-series-container:hover {
+    background-color: #89050c;
+}
+
+.create-series-form {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #141414;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.create-series-form label {
+    display: inline-block;
+    width: 80px; /* Setze die Breite der Labels nach Bedarf */
+    text-align: left; /* Text rechtsbündig ausrichten */
+    margin-right: 10px; /* Füge einen Abstand zwischen dem Label und dem Eingabefeld hinzu */
+}
+
+.create-series-form input {
+    width: calc(100% - 90px); /* Berechne die Breite der Eingabefelder, subtrahiere die Breite der Labels und des Abstands */
+    margin-bottom: 10px;
+}
+
+.create-series-container.open .create-series-form {
+    display: block;
+}

@@ -6,77 +6,59 @@
         <link rel="stylesheet" href="../../css/style.css">
         <link rel="stylesheet" href="../../css/header.css">
         <link rel="stylesheet" href="../../css/footer.css">
+        <link rel="stylesheet" href="../../css/create-series.css">
+        <link rel="stylesheet" href="../../css/series-preview.css">
+        <script src="../../script/script.js"></script>
         <title>Steam</title>
     </head>
     <body>
         <?php include('../header.php') ?>
 
-        <h2>Create a New Series</h2>
-        <form method="POST" action="">
-            <label for="title">Title:</label>
-            <input type="text" name="title" id="title"><br>
-            <label for="season">Season:</label>
-            <input type="number" name="season" id="season"><br>
-            <label for="genre">Genre:</label>
-            <input type="text" name="genre" id="genre"><br>
-            <label for="platform">Platform:</label>
-            <input type="text" name="platform" id="platform"><br>
-            <button type="submit">Create</button>
-        </form>
-
-        <div>
-            <label>Titel:</label>
-            <label>Staffeln:</label>
-            <label>Genre:</label>
-            <label>Streaming-Plattform:</label>
+        <div class="create-series-container">
+            <h2 class="toggle">Create a New Series</h2>
+            <form class="create-series-form" method="POST" action="../../script/api/series.php">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title"><br>
+                <label for="season">Season:</label>
+                <input type="number" name="season" id="season"><br>
+                <label for="genre">Genre:</label>
+                <input type="text" name="genre" id="genre"><br>
+                <label for="platform">Platform:</label>
+                <input type="text" name="platform" id="platform"><br>
+                <button type="submit">Create</button>
+            </form>
         </div>
 
-        <h1>Series API Demo</h1>
-        <h2>Get All Series</h2>
         <?php
         require('../../script/entities/series.php');
         // Get all series
         $api_url = '../../script/api/series.php';
         $series = new Series();
-        $found = $series->getSeries();
+        $found = $series->getAllSeries();
 
         if ($found) {
-            echo '<ul>';
+            echo '<div class="series-container">';
             foreach ($found as $s) {
-                echo '<li>' . $s['Title'] . ' - Season ' . $s['Season'] . ' - Genre: ' . $s['Genre'] . ' - Platform: ' . $s['Platform'] . '</li>';
+                echo '
+                        <div class="series-preview">
+                            <div class="series-thumbnail">
+                                <img src="../../assets/pic/preview.jpg" alt="Series Thumbnail">
+                            </div>
+                            <div class="series-info">
+                                <h2 class="series-title">' . $s['Title'] . '</h2>
+                                <p class="series-genre">Genre: ' . $s['Genre'] . '</p>
+                                <p class="series-season">Season: ' . $s['Season'] . '</p>
+                                <p class="series-plattform">Platform: ' . $s['Platform'] . '</p>
+                                <p class="series-description">When a young boy disappears, his mother, a police chief,
+                                and his friends must confront terrifying forces in order to get him back.</p>
+                            </div>
+                        </div>';
             }
-            echo '</ul>';
+            echo '</div>';
         } else {
             echo 'No series found';
         }
         ?>
-
-        <h2>Search Series by ID</h2>
-        <form method="GET" action="<?php echo $api_url; ?>">
-            <label for="series_id">Enter Series ID:</label>
-            <input type="text" name="id" id="series_id">
-            <button type="submit">Search</button>
-        </form>
-
-        <h2>Create a New Series</h2>
-        <form method="POST" action="<?php echo $api_url; ?>">
-            <label for="title">Title:</label>
-            <input type="text" name="title" id="title"><br>
-            <label for="season">Season:</label>
-            <input type="number" name="season" id="season"><br>
-            <label for="genre">Genre:</label>
-            <input type="text" name="genre" id="genre"><br>
-            <label for="platform">Platform:</label>
-            <input type="text" name="platform" id="platform"><br>
-            <button type="submit">Create</button>
-        </form>
-
-        <h2>Delete a Series</h2>
-        <form method="POST" action="<?php echo $api_url; ?>">
-            <label for="delete_id">Enter Series ID to Delete:</label>
-            <input type="text" name="id" id="delete_id">
-            <button type="submit">Delete</button>
-        </form>
 
         <?php include('../footer.php') ?>
     </body>

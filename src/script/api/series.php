@@ -22,24 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     header('Location: ../../html/homepage/homepage.php');
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $title = $data['title'];
-    $season = $data['season'];
-    $genre = $data['genre'];
-    $platform = $data['platform'];
+    if(empty($_POST["title"]) || empty($_POST["season"]) || empty($_POST["genre"]) || empty($_POST["platform"])) {
+        header('Location: ../../html/homepage/homepage.php');
+        exit();
+    }
+    $title = $_POST["title"];
+    $season = $_POST["season"];
+    $genre = $_POST["genre"];
+    $platform = $_POST["platform"];
 
     if ($series->createSeries($title, $season, $genre, $platform)) {
-        echo "New series created";
-    } else {
-        echo "Error creating series";
-    }
-} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data['id'];
-
-    if ($series->deleteSeries($id)) {
-        echo "Series deleted";
-    } else {
-        echo "Error deleting series";
+        header('Location: ../../html/homepage/homepage.php');
     }
 }

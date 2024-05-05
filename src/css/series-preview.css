@@ -1,0 +1,50 @@
+/* styles.css */
+
+/* Container für die gesamte Serienvorschau */
+.series-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Einzelne Serienvorschau */
+.series-preview {
+    width: 300px; /* Breite der Serienvorschau anpassen */
+    margin: 20px; /* Abstand zwischen den Serienvorschauen */
+    background-color: #141414; /* Hintergrundfarbe */
+    color: #fff; /* Textfarbe */
+    border-radius: 10px; /* Abgerundete Ecken */
+    overflow: hidden; /* Überlaufenden Inhalt verstecken */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Schatten */
+}
+
+/* Vorschaubild */
+.series-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0; /* Abgerundete Ecken oben */
+}
+
+/* Informationen zur Serie */
+.series-info {
+    padding: 20px;
+}
+
+/* Titel der Serie */
+.series-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Genre */
+.series-genre,
+.series-season,
+.series-plattform {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Beschreibung */
+.series-description {
+    font-size: 14px;
+    line-height: 1.4;
+}

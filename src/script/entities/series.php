@@ -6,12 +6,8 @@ class Series {
         $this->conn = require('../../../resources/config.php');
     }
 
-    public function getSeries($id = null) {
-        if ($id) {
-            $sql = "SELECT * FROM SERIES WHERE id = $id";
-        } else {
-            $sql = "SELECT * FROM SERIES";
-        }
+    public function getAllSeries() {
+        $sql = "SELECT * FROM SERIES";
 
         $result = $this->conn->query($sql);
 
