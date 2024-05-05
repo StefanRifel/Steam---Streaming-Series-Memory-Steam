@@ -1,27 +1,19 @@
 <?php
-require_once('../entities/series.php');
-
-$series = new Series();
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $result = $series->getSeries($id);
-        if ($result) {
-            echo json_encode($result);
-        } else {
-            echo "No series found";
-        }
+    require_once '../entities/series.php';
+
+    $search = $_GET['search'];
+    $model = new Series();
+    if(!empty($_GET['search'])) {
+        $series = $model->searchSeriesByTitle($search);
     } else {
-        $result = $series->getSeries();
-        if ($result) {
-            echo json_encode($result);
-        } else {
-            echo "No series found";
-        }
+        $series = $model->getAllSeries();
     }
-    header('Location: ../../html/homepage/homepage.php');
+
+    include '../../html/homepage/homepage.php';
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../entities/series.php';
+    $series = new Series();
     if(empty($_POST["title"]) || empty($_POST["season"]) || empty($_POST["genre"]) || empty($_POST["platform"])) {
         header('Location: ../../html/homepage/homepage.php');
         exit();

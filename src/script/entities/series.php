@@ -32,13 +32,16 @@ class Series {
         }
     }
 
-    public function deleteSeries($id) {
-        $sql = "DELETE FROM SERIES WHERE id = $id";
-
-        if ($this->conn->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
+    public function searchSeriesByTitle($search) {
+        $search = mysqli_real_escape_string($this->conn, $search);
+        $sql = "SELECT * FROM SERIES WHERE Title LIKE '%$search%'";
+        $result = $this->conn->query($sql);
+        $series = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $series[] = $row;
+            }
         }
+        return $series;
     }
 }
