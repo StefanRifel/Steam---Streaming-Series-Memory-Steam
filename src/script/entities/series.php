@@ -23,7 +23,7 @@ class Series {
     }
 
     public function createSeries($title, $season, $genre, $platform) {
-        $sql = "INSERT INTO SERIES (title, season, genre, platform) VALUES ('$title', $season, '$genre', '$platform')";
+        $sql = "INSERT INTO SERIES (Title, Season, Genre, Plattform) VALUES ('$title', '$season', '$genre', '$platform')";
 
         if ($this->conn->query($sql) === TRUE) {
             return true;
@@ -34,7 +34,7 @@ class Series {
 
     public function searchSeriesByTitle($search) {
         $search = mysqli_real_escape_string($this->conn, $search);
-        $sql = "SELECT * FROM SERIES WHERE Title LIKE '%$search%'";
+        $sql = "SELECT * FROM SERIES WHERE Title LIKE '%$search%' OR Season LIKE '%$search%' OR Genre LIKE '%$search%' OR Plattform LIKE '%$search%' ";
         $result = $this->conn->query($sql);
         $series = [];
         if ($result->num_rows > 0) {

@@ -15,7 +15,7 @@
         <?php include('../header.php') ?>
 
         <div class="header-content">
-            <h1>Steam your series collection</h1>
+            <h1>Steam - Your Series Collection</h1>
             <form class="search-form" method="GET" action="../../script/api/series.php">
                 <label>
                     <input type="text" class="search-input" name="search" id="search">
